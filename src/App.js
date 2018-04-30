@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import PostList from './PostList'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import Home from './pages/Home'
+import PostDetail from './pages/PostDetail'
 
 class App extends Component {
   render() {
@@ -9,18 +12,20 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Relay Blogging!</h1>
         </header>
-        <PostList
-            posts={[
-                {
-                    title: 'Post 1',
-                    content: 'This is a blog post!',
-                },
-                {
-                    title: 'Post 2',
-                    content: 'This is another blog post!',
-                },
-            ]}
-        />
+        <Router>
+            <Switch>
+                <Route
+                    path={"/post/:id"}
+                    component={PostDetail}
+                />
+                <Route
+                    path={"/"}
+                    exact
+                    component={Home}
+                />
+            </Switch>
+        </Router>
+
       </div>
     );
   }

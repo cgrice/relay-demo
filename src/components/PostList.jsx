@@ -1,15 +1,15 @@
 import React from 'react'
-import Post from './Post'
+import PostListItem from './PostListItem'
 
 const PostList = ({
     posts,
 }) => (
     <div>
         <ul>
-            {posts.map(({ title, content }) => (
-                <Post
+            {posts.map(({ title, id }) => (
+                <PostListItem
                     title={title}
-                    content={content}
+                    id={id}
                 />
             ))}
         </ul>
