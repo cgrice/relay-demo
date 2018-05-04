@@ -7,7 +7,7 @@ const source = new RecordSource()
 const store = new Store(source)
 
 const link = new HttpLink({
-    uri: 'http://localhost:8000/app_dev.php/graphql'
+    uri: 'http://localhost:4466/',
 })
 
 const network = Network.create(

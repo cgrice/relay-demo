@@ -1,19 +1,28 @@
 import React from 'react'
+import {
+    createFragmentContainer,
+    graphql
+} from 'react-relay'
+
 import PostListItem from './PostListItem'
 
-const PostList = ({
-    posts,
-}) => (
+const PostList = ({ posts }) => (
     <div>
         <ul>
-            {posts.map(({ title, id }) => (
-                <PostListItem
-                    title={title}
-                    id={id}
-                />
+            {posts.map((post) => (
+                <div key={post.id} >
+                    <PostListItem
+                        post={post}
+                    />
+                </div>
             ))}
         </ul>
     </div>
 )
 
-export default PostList
+export default createFragmentContainer(PostList, graphql`
+    fragment PostList_posts on Post @relay(plural: true) {
+        id
+        ...PostListItem_post
+    }    
+`)

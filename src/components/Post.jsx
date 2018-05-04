@@ -1,13 +1,31 @@
 import React from 'react'
+import { createFragmentContainer, graphql } from 'react-relay'
+
+import CommentList from './CommentList'
+import CommentForm from './CommentForm'
 
 const Post = ({
-  title,
-  content
+  post
 }) => (
     <div>
-        <h2>{title}</h2>
-        <p>{content}</p>
+        <h2>{post.title}</h2>
+        <p>{post.content}</p>
+
+        <CommentList comments={post.comments} />
+        <CommentForm
+            post={post}
+        />
     </div>
 )
 
-export default Post
+export default createFragmentContainer(Post, graphql`
+  fragment Post_post on Post {
+    id
+    title
+    content
+    comments {
+        ...CommentList_comments
+    }
+    
+  }  
+`)
