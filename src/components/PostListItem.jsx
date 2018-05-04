@@ -7,6 +7,7 @@ const PostListItem = ({
 }) => (
     <div>
         <h2>
+            { console.log(post) }
             <Link to={`/post/${post.id}`} >
                 {post.title}
             </Link>

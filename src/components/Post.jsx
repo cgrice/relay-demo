@@ -8,9 +8,9 @@ const Post = ({
   post
 }) => (
     <div>
+        { console.log(post) && ( <div></div>) }
         <h2>{post.title}</h2>
         <p>{post.content}</p>
-
         <CommentList comments={post.comments} />
         <CommentForm
             post={post}

@@ -23,7 +23,11 @@ const createComment = (author, content, postId) => {
         input: {
             author,
             content,
-            postId,
+            post: {
+                connect: {
+                    id: postId,
+                },
+            },
         }
     }
 

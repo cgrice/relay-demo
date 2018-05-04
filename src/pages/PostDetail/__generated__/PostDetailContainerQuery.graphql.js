@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7199cf640f57469760866381163cd1cf
+ * @relayHash dc32443900184012da78ab8f0faefc98
  */
 
 /* eslint-disable */
@@ -13,10 +13,10 @@ type Post_post$ref = any;
 export type PostWhereUniqueInput = {
   id?: ?string
 };
-export type PostDetailQueryVariables = {|
+export type PostDetailContainerQueryVariables = {|
   where: PostWhereUniqueInput
 |};
-export type PostDetailQueryResponse = {|
+export type PostDetailContainerQueryResponse = {|
   +post: ?{|
     +$fragmentRefs: Post_post$ref
   |}
@@ -25,7 +25,7 @@ export type PostDetailQueryResponse = {|
 
 
 /*
-query PostDetailQuery(
+query PostDetailContainerQuery(
   $where: PostWhereUniqueInput!
 ) {
   post(where: $where) {
@@ -85,13 +85,13 @@ v3 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "PostDetailQuery",
+  "name": "PostDetailContainerQuery",
   "id": null,
-  "text": "query PostDetailQuery(\n  $where: PostWhereUniqueInput!\n) {\n  post(where: $where) {\n    ...Post_post\n    id\n  }\n}\n\nfragment Post_post on Post {\n  id\n  title\n  content\n  comments {\n    ...CommentList_comments\n    id\n  }\n}\n\nfragment CommentList_comments on Comment {\n  id\n  content\n  author\n}\n",
+  "text": "query PostDetailContainerQuery(\n  $where: PostWhereUniqueInput!\n) {\n  post(where: $where) {\n    ...Post_post\n    id\n  }\n}\n\nfragment Post_post on Post {\n  id\n  title\n  content\n  comments {\n    ...CommentList_comments\n    id\n  }\n}\n\nfragment CommentList_comments on Comment {\n  id\n  content\n  author\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "PostDetailQuery",
+    "name": "PostDetailContainerQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -116,7 +116,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "PostDetailQuery",
+    "name": "PostDetailContainerQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -164,5 +164,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '19d6293cf9bb0ad43d6f179642a5dd3d';
+(node/*: any*/).hash = '785e93debc2fa84508dda09ce6080dad';
 module.exports = node;
