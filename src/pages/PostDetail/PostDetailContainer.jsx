@@ -4,6 +4,8 @@ import {
     QueryRenderer,
     graphql
 } from 'react-relay'
+import { CircularProgress } from 'material-ui/Progress'
+
 
 import environment from '../../environment'
 
@@ -15,7 +17,11 @@ const PostDetailContainer = ({
         query={graphql`
             query PostDetailContainerQuery($where: PostWhereUniqueInput!) {
                 post(where: $where) {
+                    id
                     ...Post_post
+                    comments {
+                        ...CommentList_comments
+                    }
                 }
             }
         `}
@@ -25,13 +31,12 @@ const PostDetailContainer = ({
             }
         }}
         render={({ error, props }) => {
-            console.log(props)
             if (error) {
                 return <div>{error.message}</div>
-            } else if (props) {
-                return <PostDetail post={props.post} />
+            } else if (props && props.post) {
+                return <PostDetail post={props.post}/>
             }
-            return <div>Loading...</div>
+            return <CircularProgress />
         }}
     />
 

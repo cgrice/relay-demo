@@ -1,21 +1,20 @@
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
+import Typography from 'material-ui/Typography'
+import Card, { CardContent, CardHeader } from 'material-ui/Card'
 
-import CommentList from './CommentList'
-import CommentForm from './CommentForm'
 
 const Post = ({
   post
 }) => (
-    <div>
-        { console.log(post) && ( <div></div>) }
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
-        <CommentList comments={post.comments} />
-        <CommentForm
-            post={post}
-        />
-    </div>
+    <Card>
+        <CardHeader title={post.title} />
+        <CardContent>
+            {post.content.split('\n').map((paragraph, i) => (
+                <Typography key={i} paragraph variant="body1">{paragraph}</Typography>
+            ))}
+        </CardContent>
+    </Card>
 )
 
 export default createFragmentContainer(Post, graphql`
@@ -23,9 +22,5 @@ export default createFragmentContainer(Post, graphql`
     id
     title
     content
-    comments {
-        ...CommentList_comments
-    }
-    
   }  
 `)

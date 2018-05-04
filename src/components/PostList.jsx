@@ -3,21 +3,20 @@ import {
     createFragmentContainer,
     graphql
 } from 'react-relay'
+import List from 'material-ui/List'
+
 
 import PostListItem from './PostListItem'
 
 const PostList = ({ posts }) => (
-    <div>
-        <ul>
-            {posts.map((post) => (
-                <div key={post.id} >
-                    <PostListItem
-                        post={post}
-                    />
-                </div>
-            ))}
-        </ul>
-    </div>
+    <List>
+        {posts.map((post) => (
+            <PostListItem
+                key={post.id}
+                post={post}
+            />
+        ))}
+    </List>
 )
 
 export default createFragmentContainer(PostList, graphql`

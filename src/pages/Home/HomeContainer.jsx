@@ -18,7 +18,6 @@ const HomeContainer = () => (
             }
         `}
         render={({ error, props }) => {
-            console.log(props)
             if (error) {
                 return <div>{error.message}</div>
             } else if (props) {

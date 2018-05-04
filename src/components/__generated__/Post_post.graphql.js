@@ -8,16 +8,12 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type CommentList_comments$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Post_post$ref: FragmentReference;
 export type Post_post = {|
   +id: string,
   +title: string,
   +content: string,
-  +comments: ?$ReadOnlyArray<{|
-    +$fragmentRefs: CommentList_comments$ref
-  |}>,
   +$refType: Post_post$ref,
 |};
 */
@@ -50,25 +46,9 @@ const node/*: ConcreteFragment*/ = {
       "name": "content",
       "args": null,
       "storageKey": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "comments",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Comment",
-      "plural": true,
-      "selections": [
-        {
-          "kind": "FragmentSpread",
-          "name": "CommentList_comments",
-          "args": null
-        }
-      ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '98efcebf95bc8e24ac807f314ae07be2';
+(node/*: any*/).hash = '3157fd7627e678c15320047d3fad559a';
 module.exports = node;

@@ -1,6 +1,12 @@
 import React from 'react'
 
+import Card, { CardContent } from 'material-ui/Card'
+import Button from 'material-ui/Button'
+import TextField from 'material-ui/TextField'
+
 import CreateComment from '../mutations/CreateComment'
+
+
 
 class CommentForm extends React.Component {
     constructor(props) {
@@ -45,20 +51,39 @@ class CommentForm extends React.Component {
     }
 
     render() {
+        const {
+            author,
+            content,
+        } = this.state
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Name:
-                        <input type="text" name="author" onChange={this.handleChange}/>
-                    </label>
-                    <label>
-                        Name:
-                        <textarea name="content" onChange={this.handleChange}/>
-                    </label>
-                    <input type="submit" value="Submit"/>
-                </form>
-            </div>
+            <Card>
+                <CardContent>
+                    <form onSubmit={this.handleSubmit}>
+                        <TextField
+                            name="content"
+                            id="content"
+                            label="Comment"
+                            fullWidth
+                            multiline
+                            margin="normal"
+                            value={content}
+                            onChange={this.handleChange}
+                        />
+                        <TextField
+                            name="author"
+                            id="content"
+                            label="Your name"
+                            fullWidth
+                            margin="normal"
+                            value={author}
+                            onChange={this.handleChange}
+                        />
+                        <Button variant="raised" color="primary" type="submit">
+                            Submit
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
         )
     }
 }

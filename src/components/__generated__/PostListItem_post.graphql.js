@@ -13,34 +13,52 @@ declare export opaque type PostListItem_post$ref: FragmentReference;
 export type PostListItem_post = {|
   +id: string,
   +title: string,
+  +comments: ?$ReadOnlyArray<{|
+    +id: string
+  |}>,
   +$refType: PostListItem_post$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "PostListItem_post",
   "type": "Post",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "id",
-      "args": null,
-      "storageKey": null
-    },
+    v0,
     {
       "kind": "ScalarField",
       "alias": null,
       "name": "title",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "comments",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Comment",
+      "plural": true,
+      "selections": [
+        v0
+      ]
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = 'ba669b0045045aae1cea1bd8c0d369c7';
+(node/*: any*/).hash = '6f733b015f5f911481af306435947a94';
 module.exports = node;

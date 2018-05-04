@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9f998400198132502c331865a71c9522
+ * @relayHash 25b226075dabc4f16c1a8ce100650048
  */
 
 /* eslint-disable */
@@ -35,15 +35,26 @@ fragment PostList_posts on Post {
 fragment PostListItem_post on Post {
   id
   title
+  comments {
+    id
+  }
 }
 */
 
-const node/*: ConcreteRequest*/ = {
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Request",
   "operationKind": "query",
   "name": "HomeContainerQuery",
   "id": null,
-  "text": "query HomeContainerQuery {\n  posts {\n    ...PostList_posts\n    id\n  }\n}\n\nfragment PostList_posts on Post {\n  id\n  ...PostListItem_post\n}\n\nfragment PostListItem_post on Post {\n  id\n  title\n}\n",
+  "text": "query HomeContainerQuery {\n  posts {\n    ...PostList_posts\n    id\n  }\n}\n\nfragment PostList_posts on Post {\n  id\n  ...PostListItem_post\n}\n\nfragment PostListItem_post on Post {\n  id\n  title\n  comments {\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -84,25 +95,32 @@ const node/*: ConcreteRequest*/ = {
         "concreteType": "Post",
         "plural": true,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          },
+          v0,
           {
             "kind": "ScalarField",
             "alias": null,
             "name": "title",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "comments",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Comment",
+            "plural": true,
+            "selections": [
+              v0
+            ]
           }
         ]
       }
     ]
   }
 };
+})();
 // prettier-ignore
 (node/*: any*/).hash = '9d82204851034293599fe3011ab86eba';
 module.exports = node;
