@@ -1,25 +1,30 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime'
-import { makePromise, execute } from 'apollo-link'
-import { HttpLink } from 'apollo-link-http'
-import { parse } from 'graphql'
+
+function fetchQuery(
+    operation,
+    variables,
+    cacheConfig,
+    uploadables,
+) {
+    return fetch('http://localhost:4466/', {
+        method: 'POST',
+        headers: {
+            // Add authentication and other headers here
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            query: operation.text, // GraphQL text from input
+            variables,
+        }),
+    }).then(response => {
+        return response.json()
+    })
+}
+
+const network = Network.create(fetchQuery)
 
 const source = new RecordSource()
 const store = new Store(source)
-
-const link = new HttpLink({
-    uri: 'http://localhost:4466/',
-})
-
-const network = Network.create(
-    (operation, variables) => makePromise(
-        execute(
-            link, {
-                query: parse(operation.text),
-                variables,
-            }
-        )
-    )
-)
 
 const environment = new Environment({
     network,

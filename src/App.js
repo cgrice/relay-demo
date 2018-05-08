@@ -13,7 +13,6 @@ import PostDetail from './pages/PostDetail'
 const styles = {
     container: {
         paddingTop: 80,
-
     },
 };
 
